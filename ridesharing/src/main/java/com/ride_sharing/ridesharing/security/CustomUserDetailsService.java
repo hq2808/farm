@@ -22,6 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
 
         return org.springframework.security.core.userdetails.User.builder()
+                .
                 .username(user.getEmail())
                 .password(user.getPassword())
                 .roles(user.getRole().name()) // Cần chuyển đổi role sang dạng phù hợp
