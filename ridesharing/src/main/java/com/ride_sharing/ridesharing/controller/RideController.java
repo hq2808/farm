@@ -18,7 +18,7 @@ public class RideController {
 
     @PostMapping
     public RideDTO createRide(@AuthenticationPrincipal UserDetails userDetails, @RequestBody RideDTO rideDTO) {
-        return rideService.createRide(Long.parseLong(userDetails.getUsername()), rideDTO);
+        return rideService.createRide(rideDTO);
     }
 
     @GetMapping

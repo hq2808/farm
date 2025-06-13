@@ -25,7 +25,7 @@ public class RideServiceImpl implements RideService {
 
     @Override
     public RideDTO createRide(RideDTO rideDTO) {
-        User driver = userRepository.findById(driverId)
+        User driver = userRepository.findById(rideDTO.getDriverId())
                 .orElseThrow(() -> new UsernameNotFoundException("Driver not found"));
 
         Ride ride = new Ride();
