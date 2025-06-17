@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: ms-orders
+
+  datasource:
+    url: jdbc:mysql://127.0.0.1:33066/commerce
+    username: root
+    password: 1234
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: create-drop  # có thể đổi thành "update" nếu không muốn mất data sau mỗi lần restart
+
+  kafka:
+    bootstrap-servers: 127.0.0.1:39092,127.0.0.1:29092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.LongSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    streams:
+      properties:
+        default.key.serde: org.apache.kafka.common.serialization.Serdes$LongSerde
+        default.value.serde: org.springframework.kafka.support.serializer.JsonSerde
+        spring.json.trusted.packages: "*"
+      state-dir: /tmp/kafka-streams/
+
+  h2:
+    console:
+      enabled: true
+
+spring.output.ansi.enabled: ALWAYS
+logging.pattern.console: "%clr(%d{HH:mm:ss.SSS}){blue} %clr(---){faint} %clr([%15.15t]){yellow} %clr(:){red} %clr(%m){faint}%n"
+
+server:
+  port: 9091
